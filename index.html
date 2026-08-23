@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meetmory — Privacy Policy & Terms of Service</title>
+<style>
+  :root {
+    --night: #141210;
+    --surface: #1e1a15;
+    --gold: #c9a15e;
+    --white: #f7f2e6;
+    --fog: #a89a86;
+    --line: #33291f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--night);
+    color: var(--white);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.7;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  .logo {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 28px;
+    color: var(--white);
+    margin: 0 0 4px;
+  }
+  .logo .dot { color: var(--gold); }
+  .tagline {
+    color: var(--fog);
+    font-size: 13px;
+    margin: 0 0 32px;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid var(--gold);
+    opacity: 0.5;
+    margin: 0 0 40px;
+  }
+  .lang-switch {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .lang-switch button {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    color: var(--fog);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12.5px;
+    cursor: pointer;
+  }
+  .lang-switch button.active {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+  .doc-switch {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+  }
+  .doc-switch button {
+    background: none;
+    border: none;
+    color: var(--fog);
+    font-size: 15px;
+    font-weight: 700;
+    padding: 0 0 12px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+  }
+  .doc-switch button.active {
+    color: var(--white);
+    border-bottom-color: var(--gold);
+  }
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 24px;
+    margin: 0 0 24px;
+  }
+  section { margin-bottom: 22px; }
+  section h2 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    margin: 0 0 6px;
+  }
+  section p {
+    font-size: 14px;
+    color: var(--white);
+    margin: 0;
+    white-space: pre-line;
+  }
+  .intro p {
+    color: var(--fog);
+  }
+  footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--fog);
+    font-size: 11px;
+    letter-spacing: 0.6px;
+    text-align: center;
+  }
+  .doc { display: none; }
+  .doc.active { display: block; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="logo">Meetmory<span class="dot">.</span></p>
+  <p class="tagline" id="tagline">Remember the meeting, not just the card</p>
+  <hr>
+
+  <div class="lang-switch">
+    <button data-lang="en" class="active">English</button>
+    <button data-lang="ko">한국어</button>
+  </div>
+
+  <div class="doc-switch">
+    <button data-doc="privacy" class="active" id="tab-privacy">Privacy Policy</button>
+    <button data-doc="terms" id="tab-terms">Terms of Service</button>
+  </div>
+
+  <div id="content"></div>
+
+  <footer>© 2026 WONDER MAKER. ALL RIGHTS RESERVED.</footer>
+</div>
+
+<script>
+const DATA = {
+  en: {
+    tagline: "Remember the meeting, not just the card",
+    tabs: { privacy: "Privacy Policy", terms: "Terms of Service" },
+    privacy: {
+      title: "Privacy Policy",
+      intro: "Meetmory is built so your connections stay yours. This page explains what the app holds, where it lives, and what we will never do with it.",
+      sections: [
+        ["What Meetmory holds for you", "· Contact details you enter or scan from a card\n· Meeting time, place and the notes you write\n· Photos, emoji and voice memos you attach\n· Your own card and the QR code it generates"],
+        ["Where it lives", "Everything is stored on your own device. Nothing leaves your phone, except the two AI features described below (card scanning and voice memo translation) — and only the specific photo or recording you choose to process. If cloud backup is added later, it will be optional, encrypted in transit, and you will be asked before anything leaves your phone."],
+        ["We never sell or share your data", "We do not sell, rent or trade your information. We do not use it for advertising, we do not build profiles from it, and we do not share it with third parties for their own purposes. No one at Wonder Maker browses your cards."],
+        ["Card recognition (AI)", "When you tap the AI button, the card photo is sent to Anthropic's API to read the text, then discarded. It is not stored and not used to train models."],
+        ["Voice memo translation (AI, Pro feature)", "If you record a voice memo, the audio is sent to OpenAI's Whisper API to write down what was said, then to Anthropic's API to translate it into your app language. Per OpenAI's published data policy, audio sent to their API is not used to train their models by default, and is kept for at most 30 days for abuse-monitoring before deletion. A limited number of free translations are included each month; using more requires Meetmory Pro."],
+        ["Permissions", "Camera, photo library, microphone, location, contacts and calendar are used only for the features you tap, and only while you use them. You can turn any of them off in your phone settings."],
+        ["Your rights (EU and Korea)", "Under GDPR and Korea's PIPA you may access, correct, export or delete your personal data, and withdraw consent at any time. Because your data sits on your own device, you can exercise most of these rights directly in the app by editing or deleting a card."],
+        ["Children", "Meetmory is not intended for children under 14 (Korea) or under 16 (EU) without appropriate consent."],
+        ["Deleting everything", "Deleting a connection removes it from your device. Deleting the app removes everything at once."],
+        ["Contact", "meetmory.app@gmail.com"],
+      ],
+    },
+    terms: {
+      title: "Terms of Service",
+      intro: "By using Meetmory you agree to the following.",
+      sections: [
+        ["Your content", "The cards, notes and photos you add are yours. You are responsible for having permission to store other people's contact details, and for using them lawfully."],
+        ["Acceptable use", "Do not use Meetmory to collect data unlawfully, to send unsolicited bulk email, or to harass anyone."],
+        ["AI features", "Drafted emails and card recognition are suggestions. Please review them before sending or saving."],
+        ["Availability", "The app is provided as is. Features may change, and we cannot guarantee uninterrupted service."],
+        ["Contact", "meetmory.app@gmail.com"],
+      ],
+    },
+  },
+  ko: {
+    tagline: "명함이 아니라, 만남을 기억하세요",
+    tabs: { privacy: "개인정보처리방침", terms: "이용약관" },
+    privacy: {
+      title: "개인정보처리방침",
+      intro: "Meetmory는 대표님의 인연이 대표님의 것으로 남도록 만들었습니다. 이 앱이 무엇을 보관하고, 어디에 두며, 무엇을 절대 하지 않는지 정리했습니다.",
+      sections: [
+        ["Meetmory가 보관하는 것", "· 직접 입력하거나 명함에서 인식한 연락처\n· 만난 시간과 장소, 직접 쓰신 노트\n· 첨부한 사진, 이모티콘, 음성 메모\n· 내 명함과 그로부터 만들어지는 QR 코드"],
+        ["어디에 저장되나요", "모든 정보는 이용자의 기기에 저장됩니다. 아래 두 가지 AI 기능(명함 인식, 음성 메모 통역)에 직접 사용하는 사진·녹음 파일을 제외하면 어디로도 전송되지 않습니다. 추후 클라우드 백업이 추가되더라도 선택 기능이며, 전송 구간은 암호화되고, 기기 밖으로 나가기 전에 반드시 동의를 구합니다."],
+        ["판매하거나 넘기지 않습니다", "이용자의 정보를 판매·대여·교환하지 않습니다. 광고에 이용하지 않고, 이를 바탕으로 프로필을 만들지 않으며, 제3자가 자기 목적으로 쓰도록 제공하지 않습니다. 원더메이커의 누구도 이용자의 명함을 들여다보지 않습니다."],
+        ["명함 인식 (AI)", "AI 버튼을 누를 때에만 해당 사진이 Anthropic API로 전송되어 글자를 읽은 뒤 폐기됩니다. 저장되지 않으며 모델 학습에도 쓰이지 않습니다."],
+        ["음성 메모 통역 (AI, Pro 기능)", "음성 메모를 녹음하면 그 소리가 OpenAI의 Whisper API로 전송되어 받아쓰기가 이루어진 뒤, Anthropic API로 다시 전송되어 앱에 설정된 언어로 통역됩니다. OpenAI가 공개한 데이터 정책에 따르면, API로 전송된 오디오는 기본적으로 모델 학습에 쓰이지 않으며 남용 방지 목적으로 최대 30일간 보관된 뒤 삭제됩니다. 매달 일정 횟수까지는 무료로 통역할 수 있고, 그 이상은 Meetmory Pro가 필요합니다."],
+        ["권한", "카메라, 사진, 마이크, 위치, 연락처, 캘린더 권한은 이용자가 해당 기능을 사용할 때에만, 사용하는 동안에만 쓰입니다. 휴대폰 설정에서 언제든 끌 수 있습니다."],
+        ["이용자의 권리 (EU · 한국)", "GDPR과 개인정보보호법에 따라 열람, 정정, 삭제, 이동(내보내기), 동의 철회를 요구할 권리가 있습니다. 정보가 기기에 저장되므로 대부분의 권리는 앱에서 직접 수정하거나 삭제하여 행사할 수 있습니다."],
+        ["아동", "Meetmory는 만 14세 미만(한국) 또는 만 16세 미만(EU) 아동을 대상으로 하지 않습니다."],
+        ["전체 삭제", "명함을 삭제하면 기기에서 함께 지워집니다. 앱을 삭제하면 모든 정보가 한 번에 사라집니다."],
+        ["문의", "meetmory.app@gmail.com"],
+      ],
+    },
+    terms: {
+      title: "이용약관",
+      intro: "Meetmory를 이용함으로써 아래 내용에 동의하게 됩니다.",
+      sections: [
+        ["이용자의 콘텐츠", "앱에 저장한 명함, 노트, 사진은 이용자의 것입니다. 타인의 연락처를 저장할 권한을 갖추고 적법하게 이용할 책임은 이용자에게 있습니다."],
+        ["금지 사항", "불법적인 정보 수집, 무단 대량 이메일 발송, 타인에 대한 괴롭힘 목적으로 Meetmory를 이용해서는 안 됩니다."],
+        ["AI 기능", "AI가 작성한 이메일 초안과 명함 인식 결과는 제안일 뿐입니다. 보내거나 저장하기 전에 확인해 주세요."],
+        ["서비스 제공", "본 서비스는 현재 상태 그대로 제공됩니다. 기능은 변경될 수 있으며 중단 없는 이용을 보장하지 않습니다."],
+        ["문의", "meetmory.app@gmail.com"],
+      ],
+    },
+  },
+};
+
+let lang = "en";
+let doc = "privacy";
+
+function render() {
+  const d = DATA[lang][doc];
+  document.getElementById("tagline").textContent = DATA[lang].tagline;
+  document.getElementById("tab-privacy").textContent = DATA[lang].tabs.privacy;
+  document.getElementById("tab-terms").textContent = DATA[lang].tabs.terms;
+
+  let html = `<h1>${d.title}</h1><div class="intro"><p>${d.intro}</p></div>`;
+  d.sections.forEach(([h, p]) => {
+    html += `<section><h2>${h}</h2><p>${p}</p></section>`;
+  });
+  document.getElementById("content").innerHTML = html;
+
+  document.querySelectorAll(".lang-switch button").forEach(b => {
+    b.classList.toggle("active", b.dataset.lang === lang);
+  });
+  document.querySelectorAll(".doc-switch button").forEach(b => {
+    b.classList.toggle("active", b.dataset.doc === doc);
+  });
+}
+
+document.querySelectorAll(".lang-switch button").forEach(b => {
+  b.addEventListener("click", () => { lang = b.dataset.lang; render(); });
+});
+document.querySelectorAll(".doc-switch button").forEach(b => {
+  b.addEventListener("click", () => { doc = b.dataset.doc; render(); });
+});
+
+render();
+</script>
+</body>
+</html>
