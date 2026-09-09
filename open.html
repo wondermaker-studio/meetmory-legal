@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Meetmory</title>
+<!--
+  받은 명함 링크를 앱으로 넘겨주는 중계 페이지입니다.
+
+  카카오톡·이메일 같은 곳에서는 meetmory:// 같은 앱 주소를 바로 열 수 없어서,
+  일반 웹 주소로 한 번 받은 뒤 여기서 앱으로 넘겨줍니다.
+
+  명함 정보는 주소의 # 뒤에 담겨 있고, # 뒤쪽은 서버로 전송되지 않습니다.
+  즉 이 페이지를 거쳐도 정보는 브라우저 안에만 머물고 밖으로 나가지 않아요.
+-->
+<style>
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: #14100D; color: #EFE9DC;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 24px;
+  }
+  .wrap { max-width: 420px; }
+  .logo { font-size: 30px; letter-spacing: .5px; margin-bottom: 6px; font-family: Georgia, "Times New Roman", serif; }
+  .dot { color: #D4AF37; }
+  .sub { color: #9C948A; font-size: 14px; line-height: 1.6; margin-bottom: 28px; }
+  a.btn {
+    display: block; padding: 14px 18px; border-radius: 12px;
+    text-decoration: none; font-weight: 700; font-size: 15px; margin-bottom: 10px;
+  }
+  .primary { background: #D4AF37; color: #1B1503; }
+  .ghost { border: 1px solid #3A342C; color: #EFE9DC; }
+  .note { color: #6F675E; font-size: 12px; margin-top: 18px; line-height: 1.6; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="logo">Meetmory<span class="dot">.</span></div>
+    <p class="sub" id="sub">Opening your card in Meetmory…</p>
+
+    <a class="btn primary" id="openApp" href="#">Open in Meetmory</a>
+    <a class="btn ghost" id="getApp" href="https://apps.apple.com/app/id6805145798">Get Meetmory</a>
+
+    <p class="note">
+      This card is saved to your phone only.<br />
+      이 명함은 휴대폰에만 저장됩니다.
+    </p>
+  </div>
+
+<script>
+(function () {
+  /* 주소의 # 뒤에서 명함 정보를 꺼냅니다 */
+  var hash = window.location.hash || "";
+  var m = hash.match(/[#&]d=([^&]*)/);
+  var data = m ? m[1] : "";
+
+  var appUrl = data ? "meetmory://save?d=" + data : "meetmory://";
+  document.getElementById("openApp").setAttribute("href", appUrl);
+
+  /* 안드로이드는 플레이스토어로 안내합니다 */
+  var isAndroid = /android/i.test(navigator.userAgent);
+  if (isAndroid) {
+    document.getElementById("getApp").setAttribute(
+      "href",
+      "https://play.google.com/store/apps/details?id=com.wondermaker.meetmory"
+    );
+  }
+
+  if (!data) {
+    document.getElementById("sub").textContent =
+      "This link has no card information. 링크에 명함 정보가 없습니다.";
+    return;
+  }
+
+  /* 앱이 깔려 있으면 자동으로 열립니다.
+     안 깔려 있으면 아무 일도 일어나지 않고, 위 버튼이 남습니다. */
+  setTimeout(function () { window.location.href = appUrl; }, 300);
+
+  setTimeout(function () {
+    document.getElementById("sub").textContent =
+      "Tap the button below if Meetmory didn’t open. 앱이 열리지 않았다면 아래 버튼을 눌러주세요.";
+  }, 2200);
+})();
+</script>
+</body>
+</html>
